@@ -1,0 +1,24 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.1.0",
+  "FriendlyName": "Project Diagnostics Toolset Example",
+  "Description": "Minimal read-only UE5.8 ToolsetRegistry example.",
+  "Category": "AI",
+  "CanContainContent": false,
+  "IsExperimentalVersion": true,
+  "EnabledByDefault": false,
+  "Modules": [
+    {
+      "Name": "ProjectDiagnosticsToolset",
+      "Type": "Editor",
+      "LoadingPhase": "PostEngineInit"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "ToolsetRegistry",
+      "Enabled": true
+    }
+  ]
+}

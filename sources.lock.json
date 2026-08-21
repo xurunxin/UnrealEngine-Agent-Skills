@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "last_verified": "2026-08-21",
+  "engine_source": {
+    "repository": "https://github.com/xurunxin/UnrealEngine",
+    "visibility": "private",
+    "ref": "release",
+    "commit": "71fe36aac5a8df5ccd66c763ffc902b29b6a9c43",
+    "version": {
+      "major": 5,
+      "minor": 8,
+      "patch": 1
+    },
+    "verified_paths": [
+      "Engine/Build/Build.version",
+      "Engine/Source/Runtime/Core/Public/Misc/EngineVersionComparison.h",
+      "Engine/Plugins/Experimental/ModelContextProtocol/ModelContextProtocol.uplugin",
+      "Engine/Plugins/Experimental/ModelContextProtocol/Source/ModelContextProtocol/Public/IModelContextProtocolModule.h",
+      "Engine/Plugins/Experimental/ModelContextProtocol/Source/ModelContextProtocol/Public/IModelContextProtocolTool.h",
+      "Engine/Plugins/Experimental/ModelContextProtocol/Source/ModelContextProtocolEngine/Public/ModelContextProtocolSettings.h",
+      "Engine/Plugins/Experimental/ToolsetRegistry/ToolsetRegistry.uplugin",
+      "Engine/Plugins/Experimental/ToolsetRegistry/Source/ToolsetRegistry/Public/ToolsetRegistry/AgentSkill.h",
+      "Engine/Plugins/Experimental/ToolsetRegistry/Source/ToolsetRegistry/Public/ToolsetRegistry/ToolsetDefinition.h",
+      "Engine/Plugins/Experimental/ToolsetRegistry/Source/ToolsetRegistry/Public/ToolsetRegistry/UToolsetRegistry.h",
+      "Engine/Plugins/Experimental/Toolsets/AllToolsets/AllToolsets.uplugin"
+    ],
+    "redistribution_note": "Paths and original summaries only. Do not copy Epic restricted source into this public repository."
+  },
+  "upstream_skills": [
+    {
+      "name": "EpicGames Unreal Engine Skills for Claude Code",
+      "url": "https://github.com/EpicGames/unreal-engine-skills-for-claude-code-plugin",
+      "ref": "main",
+      "commit": "7e3b09bbf6d2984c155233f9d3de5fcf523d2d42",
+      "role": "Official UE5.8 MCP and Toolset skill conventions; adapted, not copied wholesale."
+    },
+    {
+      "name": "Agent Skills specification and examples",
+      "url": "https://github.com/agentskills/agentskills",
+      "role": "Portable SKILL.md structure and progressive disclosure.",
+      "ref": "main",
+      "commit": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
+      "verified_path": "docs/specification.mdx"
+    },
+    {
+      "name": "skills.sh",
+      "url": "https://github.com/vercel-labs/skills",
+      "role": "skills.sh CLI/distribution behavior and multi-agent installation; format authority remains agentskills/agentskills.",
+      "ref": "main",
+      "commit": "435076e78988e1e6ec40d00b0b1d76bdbbc5419a",
+      "version": "1.5.23"
+    }
+  ],
+  "official_docs": [
+    {
+      "name": "Unreal MCP in Unreal Editor",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-mcp-in-unreal-editor",
+      "engine_version": "5.8",
+      "role": "Server, Toolset Registry, discovery, commands, threading, and authoring guidance."
+    },
+    {
+      "name": "Unreal Build Tool documentation",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-build-tool-in-unreal-engine",
+      "role": "UBT, TargetRules, ModuleRules, and build configuration."
+    },
+    {
+      "name": "Unreal Engine versioning",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/versioning-of-assets-and-packages-in-unreal-engine",
+      "role": "Asset and package version context."
+    }
+  ],
+  "community_sources": [
+    {
+      "name": "UE5Wiki",
+      "url": "https://ue5wiki.com",
+      "trust": "community",
+      "policy": "Use for implementation clues only; many pages retain UE4-era assumptions and require source verification."
+    },
+    {
+      "name": "VibeUE",
+      "url": "https://github.com/Tencent/VibeUE",
+      "trust": "community",
+      "policy": "Use as evidence for practical UE5.8 MCP extension patterns; verify APIs against pinned source."
+    },
+    {
+      "name": "ue-official-mcp",
+      "url": "https://github.com/tc-imba/ue-official-mcp",
+      "trust": "community",
+      "policy": "Use its per-version probing idea, not as an authoritative API source."
+    }
+  ]
+}

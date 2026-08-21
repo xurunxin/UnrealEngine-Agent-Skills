@@ -1,0 +1,30 @@
+name: Engine source update
+about: Track a new UE source pin or compatibility change
+title: "[source] Verify UE "
+labels: [source-update]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Unreal Engine version
+      placeholder: 5.8.2
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Exact source commit
+    validations:
+      required: true
+  - type: textarea
+    id: paths
+    attributes:
+      label: Changed public interfaces or manifests
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Probe and test results
+    validations:
+      required: true

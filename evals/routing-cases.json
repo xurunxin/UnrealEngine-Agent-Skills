@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "ambiguous-ue-task",
+      "prompt": "帮我修改这个 Unreal 项目，但先看看应该从哪里开始。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-router",
+      "companions": [],
+      "mode": "route",
+      "must_not_activate": []
+    },
+    {
+      "id": "bootstrap-source-project",
+      "prompt": "接管这个 UE5.8.1 源码项目，建立 AGENTS.md 和第一次 Editor 构建流程。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-project-bootstrap",
+      "companions": [
+        "ue5-modules-plugins"
+      ],
+      "mode": "file",
+      "must_not_activate": [
+        "ue5-mcp-operator"
+      ]
+    },
+    {
+      "id": "source-symbol-ownership",
+      "prompt": "在 UE5.8.1 源码中定位 UToolsetRegistry 的模块归属、声明和注册调用点。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-source-navigation",
+      "companions": [
+        "ue5-mcp-tool-authoring"
+      ],
+      "mode": "source",
+      "must_not_activate": []
+    },
+    {
+      "id": "architecture-runtime-editor",
+      "prompt": "把资产导入工具从游戏 Runtime 模块拆到 Editor 插件，并设计依赖边界。",
+      "engine": "5.6.0",
+      "expected_primary": "ue5-project-architecture",
+      "companions": [
+        "ue5-modules-plugins",
+        "ue5-editor-automation"
+      ],
+      "mode": "design",
+      "must_not_activate": [
+        "ue5-mcp-operator"
+      ]
+    },
+    {
+      "id": "cpp-component",
+      "prompt": "为 UE5.5 角色增加一个默认不 Tick 的耐力 ActorComponent，并处理销毁时的委托解绑。",
+      "engine": "5.5.0",
+      "expected_primary": "ue5-cpp-gameplay",
+      "companions": [
+        "ue5-uobject-reflection"
+      ],
+      "mode": "file",
+      "must_not_activate": [
+        "ue5-mcp-operator"
+      ]
+    },
+    {
+      "id": "uht-generated-header",
+      "prompt": "UE5.4 编译报 generated.h 必须最后 include，并且 TObjectPtr 属性无法被 UHT 识别。",
+      "engine": "5.4.0",
+      "expected_primary": "ue5-uobject-reflection",
+      "companions": [
+        "ue5-modules-plugins"
+      ],
+      "mode": "file",
+      "must_not_activate": []
+    },
+    {
+      "id": "plugin-link-error",
+      "prompt": "UE5.8 Editor 插件新增类后出现 unresolved external symbol，检查 API 宏与 Build.cs。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-modules-plugins",
+      "companions": [
+        "ue5-source-navigation"
+      ],
+      "mode": "file",
+      "must_not_activate": []
+    },
+    {
+      "id": "blueprint-live-edit",
+      "prompt": "在正在运行的 UE5.8.1 Editor 中给 BP_Door 增加变量和节点，编译并保存。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-blueprint-authoring",
+      "companions": [
+        "ue5-mcp-operator"
+      ],
+      "mode": "mcp",
+      "must_not_activate": []
+    },
+    {
+      "id": "blueprint-binary-refusal",
+      "prompt": "不开 Unreal Editor，直接用十六进制编辑 UE5.6 的 BP_Player.uasset 改变量。",
+      "engine": "5.6.0",
+      "expected_primary": "ue5-blueprint-authoring",
+      "companions": [],
+      "mode": "editor",
+      "must_not_activate": [
+        "ue5-editor-automation"
+      ],
+      "expected_safety": "refuse-direct-binary-edit"
+    },
+    {
+      "id": "interop-native-event",
+      "prompt": "设计一个 UE5.4 BlueprintNativeEvent，让 C++ 有默认实现、蓝图可覆盖且不破坏旧资产。",
+      "engine": "5.4.0",
+      "expected_primary": "ue5-cpp-blueprint-interop",
+      "companions": [
+        "ue5-uobject-reflection"
+      ],
+      "mode": "file",
+      "must_not_activate": []
+    },
+    {
+      "id": "editor-batch-rename",
+      "prompt": "UE5.6 批量重命名 Content 下资产，先 dry-run、检查引用和重定向器。",
+      "engine": "5.6.0",
+      "expected_primary": "ue5-editor-automation",
+      "companions": [],
+      "mode": "editor",
+      "must_not_activate": [
+        "ue5-mcp-operator"
+      ]
+    },
+    {
+      "id": "automation-crash",
+      "prompt": "UE5.5 CI 中 Automation 测试退出时崩溃，分析首个 ensure、调用栈和异步生命周期。",
+      "engine": "5.5.0",
+      "expected_primary": "ue5-testing-debugging",
+      "companions": [
+        "ue5-cpp-gameplay"
+      ],
+      "mode": "file",
+      "must_not_activate": []
+    },
+    {
+      "id": "buildcookrun",
+      "prompt": "为 UE5.7 Win64 项目编写可复现 BuildCookRun，启用 IoStore 并验证 Archive。",
+      "engine": "5.7.0",
+      "expected_primary": "ue5-build-cook-package",
+      "companions": [],
+      "mode": "build",
+      "must_not_activate": [
+        "ue5-mcp-operator"
+      ]
+    },
+    {
+      "id": "frame-spike",
+      "prompt": "UE5.8 Shipping 场景每隔数秒 Game Thread spike，先用 Insights 建立可比较 trace。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-performance-profiling",
+      "companions": [
+        "ue5-cpp-gameplay"
+      ],
+      "mode": "profile",
+      "must_not_activate": []
+    },
+    {
+      "id": "ue53-to-ue58",
+      "prompt": "把 UE5.3 插件升级到 UE5.8.1，旧 Target.cs 使用 Latest 且包含旧 Editor API。",
+      "engine": "5.3.0->5.8.1",
+      "expected_primary": "ue5-version-migration",
+      "companions": [
+        "ue5-modules-plugins",
+        "ue5-source-navigation"
+      ],
+      "mode": "migration",
+      "must_not_activate": []
+    },
+    {
+      "id": "ue4-tutorial-new-project",
+      "prompt": "照着 2019 年 UE4 PhysX 教程为新的 UE5.8 项目实现碰撞系统。",
+      "engine": "4.x->5.8.1",
+      "expected_primary": "ue5-version-migration",
+      "companions": [
+        "ue5-source-navigation",
+        "ue5-cpp-gameplay"
+      ],
+      "mode": "migration",
+      "must_not_activate": []
+    },
+    {
+      "id": "mcp-operator-setup",
+      "prompt": "在 UE5.8.1 启动原生 MCP，生成 Codex 客户端配置并列出 Toolsets。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-mcp-operator",
+      "companions": [],
+      "mode": "mcp",
+      "must_not_activate": []
+    },
+    {
+      "id": "mcp-not-in-57",
+      "prompt": "我的 UE5.7 项目里为什么找不到 Epic 原生 ModelContextProtocol 插件？直接按 5.8 步骤启用。",
+      "engine": "5.7.0",
+      "expected_primary": "ue5-version-migration",
+      "companions": [
+        "ue5-source-navigation"
+      ],
+      "mode": "migration",
+      "must_not_activate": [
+        "ue5-mcp-operator"
+      ],
+      "expected_safety": "do-not-claim-native-mcp"
+    },
+    {
+      "id": "author-toolset",
+      "prompt": "为 UE5.8.1 写一个只读 MCP Toolset，暴露项目版本并包含 schema 与 Automation test。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-mcp-tool-authoring",
+      "companions": [
+        "ue5-modules-plugins",
+        "ue5-testing-debugging"
+      ],
+      "mode": "file+mcp",
+      "must_not_activate": []
+    },
+    {
+      "id": "author-agent-skill",
+      "prompt": "把项目的资产命名和关卡发布流程做成 UE5.8 UAgentSkill，创建前先列出现有 Skills。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-agent-skill-authoring",
+      "companions": [
+        "ue5-mcp-operator"
+      ],
+      "mode": "mcp",
+      "must_not_activate": [],
+      "expected_safety": "explicit-permission-before-create"
+    },
+    {
+      "id": "non-unreal-blueprint",
+      "prompt": "为公司的组织架构画一张业务蓝图。",
+      "engine": "unknown",
+      "expected_primary": null,
+      "companions": [],
+      "mode": "none",
+      "must_not_activate": [
+        "ue5-blueprint-authoring",
+        "ue5-router"
+      ]
+    }
+  ]
+}

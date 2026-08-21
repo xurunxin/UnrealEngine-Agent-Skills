@@ -1,0 +1,28 @@
+name: Skill change
+about: Add or improve a UE5.4+ skill
+labels: [skill]
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill name
+    validations:
+      required: true
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Distinct trigger and non-trigger cases
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Versioned evidence
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+    validations:
+      required: true

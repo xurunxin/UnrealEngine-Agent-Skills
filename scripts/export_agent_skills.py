@@ -48,7 +48,7 @@ def main() -> int:
     payload = {
         "schema_version": 1,
         "verified_engine": manifest["verified_engine"]["version"],
-        "notice": "Review every entry and obtain explicit user permission before calling AgentSkillToolset.CreateSkill or UpdateSkill.",
+        "notice": "Review every entry and verify that explicit user permission covers its target and content before calling AgentSkillToolset.CreateSkill or UpdateSkill; reuse existing authorization for the same scope.",
         "skills": exported,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

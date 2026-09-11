@@ -1,6 +1,6 @@
 ---
 name: ue5-mcp-tool-authoring
-description: "Design, implement, register, test, and secure UE5.8 MCP Toolsets or direct protocol tools using ToolsetRegistry, typed AICallable functions, async results, schemas, and explicit privilege boundaries."
+description: "Implement or extend UE5.8 MCP Toolsets and their typed schemas; use the operator skill to call existing tools."
 ---
 
 # UE5.8 MCP Tool Authoring
@@ -29,7 +29,7 @@ description: "Design, implement, register, test, and secure UE5.8 MCP Toolsets o
 
 ### 3. 设计小而完整的工具
 
-工具名称和描述面向任务，参数/返回值使用真实 UE 类型或 USTRUCT，不把结构塞进 JSON 字符串。支持合理 CRUD 对称，但默认先做只读。每个 mutation 校验对象路径、World、权限和前置状态。
+工具名称和描述面向任务，参数/返回值使用真实 UE 类型或 USTRUCT，不把结构塞进 JSON 字符串。只暴露当前任务需要的操作，不为形式完整添加 CRUD；默认先做只读。每个 mutation 校验对象路径、World、权限和前置状态。
 
 ### 4. C++ 约定
 
@@ -50,9 +50,9 @@ description: "Design, implement, register, test, and secure UE5.8 MCP Toolsets o
 
 ### 7. 测试与威胁审查
 
-每个 Tool 测试成功、所有输入错误、对象失效、PIE/无 World、异步取消和重复调用。Mutation 在临时资产/地图运行，并验证清理。审查是否能越权访问文件系统、执行代码或批量删除。
+每个 Tool 验证成功与相关输入错误；涉及 UObject/World 时测对象失效和 PIE/无 World，异步工具另测取消、重复完成/调用。Mutation 在临时资产/地图运行，并验证清理。审查是否能越权访问文件系统、执行代码或批量删除。
 
-API 路径与检查表见 `references/ue5.8.1-api-map.md`，Python Toolset 约定见 `references/python-toolsets.md`；原始 C++ 示例见 `examples/mcp-toolset/`。
+核对接口时读取 [UE5.8.1 API map](references/ue5.8.1-api-map.md)；选择 Python 才读取 [Python Toolsets](references/python-toolsets.md)，选择 C++ 可查仓库的 [原创示例](../../examples/mcp-toolset/README.md)。
 
 ## 验证
 

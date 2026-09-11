@@ -15,7 +15,7 @@
 
 ## 三层结构
 
-1. **通用文本 Skills**：兼容支持 `SKILL.md` 的 Coding Agent，入口为 [`skills/ue5-router/SKILL.md`](skills/ue5-router/SKILL.md)。
+1. **通用文本 Skills**：兼容支持 `SKILL.md` 的 Coding Agent，任务不明确时可从 [`skills/ue5-router/SKILL.md`](skills/ue5-router/SKILL.md) 选择领域入口。
 2. **UE5.8 编辑器原生能力**：通过 ModelContextProtocol、Toolset Registry 和项目内 `UAgentSkill` 驱动 Editor；相关流程位于 `ue5-mcp-*` 与 `ue5-agent-skill-authoring`。
 3. **可验证来源层**：`sources.lock.json` 固定源码提交与外部资料，`scripts/verify_engine.py` 在本地校验 Engine 版本和关键路径。
 
@@ -34,7 +34,7 @@ python scripts/verify_engine.py --engine-root /path/to/UnrealEngine
 python scripts/probe_mcp.py --url http://127.0.0.1:8000/mcp
 ```
 
-让 Agent 从 `ue5-router` 开始，根据任务只加载必要 Skill。任何写资产、批量改 Blueprint、执行 Editor Python、创建 AgentSkill 或调用高权限 MCP Toolset 的任务，都必须先建立源码控制恢复点并取得用户明确许可。
+明确任务直接加载对应领域 Skill，跨领域或模式不明时使用 `ue5-router`；只读取当前分支所需 references。资产、Editor Python 或高权限 MCP 写操作须先建立恢复点并确保用户明确授权覆盖目标，已有授权无需重复确认。只读查询不要求保存或重启 Editor。
 
 ### 通过 skills CLI 安装
 
@@ -68,6 +68,8 @@ npx skills add xurunxin/UnrealEngine-Agent-Skills --skill ue5-mcp-operator
 - **Blueprint 不做二进制编辑**：不得直接改 `.uasset`/`.umap` 字节；使用 Editor、MCP、Python 或受控工具。
 - **MCP 串行调用**：Editor Toolset 通常运行在 Game Thread；不要并行发起依赖 Editor 状态的调用。
 - **版本门槛显式化**：涉及 UE5.8-only API 时必须写出 gate 和降级路径。
+
+针对 Astra 的路由、按需加载与完成条件调整，以及实际验证范围，见 [Astra 迁移说明](docs/astra-migration.md)；技能保持跨模型可用。
 
 ## 维护
 

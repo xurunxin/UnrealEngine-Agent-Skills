@@ -1,6 +1,6 @@
 ---
 name: ue5-modules-plugins
-description: "Create or change UE5.4+ modules and plugins, including Build.cs, Target.cs, descriptors, API exports, Public/Private dependencies, load phases, editor/runtime separation, and circular-dependency prevention."
+description: "Configure UE5.4+ modules and plugins or diagnose Build.cs, Target.cs, exports, dependencies, and loading failures."
 ---
 
 # UE5 Modules and Plugins
@@ -45,7 +45,7 @@ description: "Create or change UE5.4+ modules and plugins, including Build.cs, T
 - 找不到头：检查拥有模块和 include 路径，不手工加 Engine 私有目录；
 - 模块无法加载：检查编译配置、目标类型、二进制版本、插件启用和启动日志。
 
-参考 `references/build-rules-checklist.md`。
+修改构建规则或排查链接/加载失败时读取 [构建规则检查表](references/build-rules-checklist.md)。
 
 ## 验证
 

@@ -9,14 +9,16 @@ The native UE5.8 MCP server gives a client live Editor authority. Its risk is de
 - Editor Python and programmatic execution can reach the project, asset database, source tree, and process environment.
 - Source-control checkpoints are the recovery mechanism; Undo is not reliable across all saves, compiles, renames, or commandlets.
 
-## Required operating sequence
+## Asset mutation sequence
+
+Read-only queries need the correct instance and schema, but do not by themselves require saving assets or stopping PIE. Honor tool-specific state preconditions. For writes:
 
 1. Confirm the correct Editor instance, project, map, mode, and Engine version.
 2. Save or commit/shelve current work.
 3. Discover the smallest Toolset and read its schema.
 4. Perform read-only inspection first.
-5. Present the intended mutation when it is destructive or broad.
-6. Execute serially and stop on ambiguous results.
+5. Present destructive or broad mutations and check that explicit authorization covers them; reuse authorization already given for that scope.
+6. Execute serially. On ambiguous results, pause further writes and inspect state/logs before recovery; never blindly retry. Repair definite, recoverable failures within scope and revalidate.
 7. Compile affected Blueprints/C++, save explicit assets, and re-read state.
 8. Review source-control changes before submission.
 

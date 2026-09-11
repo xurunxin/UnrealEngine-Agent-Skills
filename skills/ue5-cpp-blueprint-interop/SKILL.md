@@ -1,6 +1,6 @@
 ---
 name: ue5-cpp-blueprint-interop
-description: "Choose and implement UE5.4+ C++ and Blueprint interoperability, including exposure metadata, events, interfaces, function libraries, data contracts, soft references, and stable designer-facing APIs."
+description: "Design or repair UE5.4+ C++ APIs exposed to Blueprint, including events, interfaces, metadata, and asset compatibility."
 ---
 
 # UE5 C++ and Blueprint Interop
@@ -48,7 +48,7 @@ description: "Choose and implement UE5.4+ C++ and Blueprint interoperability, in
 
 ## 验证
 
-- C++ 完整编译并重启 Editor；
+- C++ 编译通过；反射签名变化时完整冷编译并重启 Editor；
 - Blueprint 节点显示名称、类别、Pin 和默认值正确；
 - 旧资产加载时没有断 Pin/Unknown Struct/失效父类；
 - 失败路径在 Blueprint 可判断；

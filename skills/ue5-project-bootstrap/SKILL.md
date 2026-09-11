@@ -1,6 +1,6 @@
 ---
 name: ue5-project-bootstrap
-description: "Bootstrap or normalize a UE5.4+ project workspace, including engine detection, project files, AGENTS instructions, source-control hygiene, plugins, and the first compile/test loop."
+description: "Set up or take over a UE5.4+ C++ workspace with a working toolchain, project instructions, and first Editor build."
 ---
 
 # UE5 Project Bootstrap
@@ -25,7 +25,7 @@ description: "Bootstrap or normalize a UE5.4+ project workspace, including engin
 - `Source/`、`Plugins/`、`Config/` 与测试位置；
 - Git/LFS/Perforce 状态和二进制资产策略。
 
-如果存在多个 `.uproject`，不要自动选择；用调用方指定的项目路径贯穿所有命令。
+多个 `.uproject` 时使用用户已指定或任务上下文唯一确定的路径；仍无法判断时再澄清，并让该路径贯穿所有命令。
 
 ### 2. 检查工具链
 
@@ -42,7 +42,7 @@ description: "Bootstrap or normalize a UE5.4+ project workspace, including engin
 
 ### 4. 生成并构建最小 Target
 
-优先调用引擎提供的 GenerateProjectFiles 脚本，然后构建 `<Project>Editor` Development。首次循环只证明：
+需要生成/更新项目文件时调用引擎提供的 GenerateProjectFiles 脚本，然后构建 `<Project>Editor` Development。首次循环只证明：
 
 1. UBT 能解析 Target/Module；
 2. UHT 成功；

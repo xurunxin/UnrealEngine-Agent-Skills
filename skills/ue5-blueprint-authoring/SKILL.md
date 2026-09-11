@@ -1,6 +1,6 @@
 ---
 name: ue5-blueprint-authoring
-description: "Design, inspect, or modify UE5.4+ Blueprints and Blueprint assets through Unreal Editor, MCP, or scripting while preserving graph correctness, compile status, defaults, references, and source-control recoverability."
+description: "Inspect or edit UE5.4+ Blueprint graphs and assets through Editor tools, with compile and reference validation."
 ---
 
 # UE5 Blueprint Authoring
@@ -17,7 +17,7 @@ description: "Design, inspect, or modify UE5.4+ Blueprints and Blueprint assets 
 
 ### 1. 建立恢复点
 
-保存当前资产并提交/搁置。确认目标 Blueprint 路径、父类、依赖资产、是否正被多人编辑、PIE 是否运行。批量修改前先在副本或沙箱验证。
+只读检查不要求修改 Editor 状态。写入前保存当前资产并提交/搁置，确认目标路径、父类、依赖和多人编辑状态，停止 PIE 并等待编译/加载完成。批量修改先在副本或沙箱验证。
 
 ### 2. 只读检查
 
@@ -37,19 +37,21 @@ description: "Design, inspect, or modify UE5.4+ Blueprints and Blueprint assets 
 
 ### 4. 通过 Editor API 修改
 
-使用 MCP/Editor Python/Blueprint 工具时：先描述 Tool schema，逐步创建变量/节点/连接，验证每个返回值。不要并行改同一 Blueprint。对删除、重命名、父类变更和 Pin 重连取得明确许可。
+使用 MCP/Editor Python/Blueprint 工具时：先描述 Tool schema，逐步创建变量/节点/连接，验证每个返回值。不要并行改同一 Blueprint。对删除、重命名、父类变更和 Pin 重连检查现有明确授权是否覆盖目标；未覆盖时展示具体变更后再确认。
 
 ### 5. 编译、保存、重读
 
-每个逻辑步骤后编译 Blueprint；有错误立即停止。保存明确资产，然后重新查询变量、图和编译结果。必要时打开 Editor 验证默认值、组件层级和运行行为。
+每个逻辑变更后编译 Blueprint；出现错误先暂停后续图修改，在已授权范围内定位并修复本次变更，再编译验证。结果不明确时先重读，不能盲目重试写入。保存明确资产，然后重新查询变量、图和编译结果。必要时打开 Editor 验证默认值、组件层级和运行行为。
 
 ### 6. 审查资产差异
 
 使用 Unreal Diff/Source Control 工具，而不是文本 diff 假装理解 `.uasset`。确认没有意外修改依赖资产、默认对象、重定向器或大量重新保存。
 
-完整安全规则见 `references/blueprint-safety.md`。
+涉及图替换、父类/类型变化或批量操作时，读取 [资产安全检查](references/blueprint-safety.md)。
 
 ## 验证
+
+只读任务交付实际图/类型/编译状态。以下检查用于资产修改；重开 Editor 重点验证父类、反射或序列化变化，普通查询不触发重启。
 
 - Blueprint 编译为 Success 且无新增重要 warning；
 - 目标图、Pin、变量类型和默认值与计划一致；

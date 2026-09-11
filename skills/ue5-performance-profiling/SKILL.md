@@ -1,6 +1,6 @@
 ---
 name: ue5-performance-profiling
-description: "Investigate and improve UE5.4+ CPU, GPU, memory, loading, shader, asset, and network performance using evidence-first profiling and changes that preserve frame and thread safety."
+description: "Measure and fix UE5.4+ performance regressions in frame time, memory, loading, or network behavior."
 ---
 
 # UE5 Performance Profiling

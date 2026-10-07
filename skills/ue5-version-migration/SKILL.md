@@ -1,6 +1,6 @@
 ---
 name: ue5-version-migration
-description: "Migrate or audit Unreal projects and plugins toward UE5.4+ while isolating UE4 and UE5.0–5.3 legacy assumptions, validating source-level API changes, build settings, reflection, assets, and behavior."
+description: "Migrate projects or plugins to UE5.4+, or verify legacy recipes and cross-minor compatibility."
 ---
 
 # UE5 Version Migration
@@ -49,7 +49,7 @@ description: "Migrate or audit Unreal projects and plugins toward UE5.4+ while i
 
 资产在新版本保存后通常不可安全回退。分批打开/编译/保存，审查重定向器、父类、默认值和大量 resave。保留旧版本可恢复分支和原始二进制资产。
 
-更详细矩阵见 `references/compatibility-matrix.md`。
+建立跨版本支持矩阵时读取 [兼容性矩阵](references/compatibility-matrix.md)。
 
 ## 验证
 

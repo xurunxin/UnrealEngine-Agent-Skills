@@ -1,6 +1,6 @@
 ---
 name: ue5-testing-debugging
-description: "Plan, implement, run, and diagnose UE5.4+ tests and failures using Automation specs, functional tests, logs, ensures/checks, crash artifacts, focused reproduction, and CI-friendly commands."
+description: "Reproduce and diagnose UE5.4+ crashes or test failures, and implement focused Automation or functional tests."
 ---
 
 # UE5 Testing and Debugging
@@ -32,7 +32,7 @@ description: "Plan, implement, run, and diagnose UE5.4+ tests and failures using
 
 测试名按产品域分层，显式创建/销毁状态，不依赖测试顺序、本机 Content Browser 或固定时间 sleep。异步测试等待明确条件并有超时。每个错误分支使用预期日志/错误断言。
 
-### 4. 诊断顺序
+### 4. 按故障证据定位
 
 1. 第一个编译/UHT/加载错误；
 2. 首个 ensure/check 调用栈；
@@ -51,9 +51,11 @@ description: "Plan, implement, run, and diagnose UE5.4+ tests and failures using
 
 使用 `UnrealEditor-Cmd`、`-unattended`、明确测试过滤器和报告目录。失败时保留日志/报告/Crash artifacts。把快速门禁和长时 Cook/平台测试分层。
 
-参考 `references/test-matrix.md`。
+需要选择测试载体或 CI 分层时读取 [测试矩阵](references/test-matrix.md)。
 
 ## 验证
+
+修复任务应重跑复现和受影响测试，继续处理本次引入的确定失败；仅诊断任务交付证据与原因。已有有效测试覆盖时直接使用，不为检查项数量重复造测试。
 
 - 新测试在无缓存/干净进程至少运行一次；
 - 失败测试确实因修复前问题失败；

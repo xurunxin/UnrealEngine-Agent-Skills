@@ -1,6 +1,6 @@
 ---
 name: ue5-source-navigation
-description: "Navigate Unreal Engine 5.4+ source safely and efficiently when locating APIs, modules, ownership, call paths, version changes, or engine examples without copying restricted source."
+description: "Locate version-correct UE5.4+ APIs, module ownership, and engine call sites for source questions or unresolved symbols."
 ---
 
 # UE5 Source Navigation
@@ -21,7 +21,7 @@ description: "Navigate Unreal Engine 5.4+ source safely and efficiently when loc
 
 ### 2. 找声明、定义和当前使用
 
-按顺序查：
+按问题选择证据：API 用法查声明和当前调用，链接错误补查定义与 Build.cs；生命周期或加载问题再查测试/描述符。可用入口：
 
 1. 声明头文件；
 2. 实现文件；
@@ -44,7 +44,7 @@ description: "Navigate Unreal Engine 5.4+ source safely and efficiently when loc
 
 输出 API 路径、所属模块、需要的 include/dependency、线程/生命周期限制、目标版本和当前调用示例位置。只概述实现，不复制受限源码主体。
 
-详细路径入口见 `references/source-map.md`。
+尚未找到所属目录时，读取 [源码路径入口](references/source-map.md)。
 
 ## 验证
 
@@ -52,4 +52,4 @@ description: "Navigate Unreal Engine 5.4+ source safely and efficiently when loc
 - 声明、定义、模块依赖和至少一个当前调用点一致；
 - 目标 Target 可以合法依赖该模块；
 - 版本/平台/Editor gate 已记录；
-- 建议通过最小编译或测试验证，而不是仅凭搜索结果。
+- 源码定位以路径和版本证据交付；实际代码修改另用最小编译/测试验证，不把搜索命中当作编译成功。

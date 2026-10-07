@@ -2,6 +2,13 @@
 
 All notable changes use a simplified Keep a Changelog format.
 
+## Unreleased
+
+- Refined 17 skill descriptions and synchronized manifest/catalog discovery metadata.
+- Made the router conditional, references task-specific, and completion checks proportional to the requested work.
+- Preserved Engine/API and asset safety gates while distinguishing read-only Editor tasks, existing authorization, recoverable failures, and ambiguous writes.
+- Documented Astra migration reasoning, regression cases, and verification limits in `docs/astra-migration.md`.
+
 ## [0.1.0] - 2026-08-21
 
 ### Added

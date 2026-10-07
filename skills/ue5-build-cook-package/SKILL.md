@@ -1,6 +1,6 @@
 ---
 name: ue5-build-cook-package
-description: "Build, cook, stage, package, archive, or patch UE5.4+ projects with UBT, UAT, BuildCookRun, IoStore, configuration control, log triage, and reproducible artifact checks."
+description: "Build, cook, package, or patch UE5.4+ projects and diagnose UBT/UAT stage failures or invalid artifacts."
 ---
 
 # UE5 Build, Cook, and Package
@@ -48,9 +48,11 @@ Windows 使用 `Build.bat`/`RunUAT.bat`，Unix 使用对应 `.sh`。统一传入
 
 记录文件哈希、版本元数据、容器列表、启动日志和 smoke test。对 Client/Server 分别验证目标可执行文件、地图和网络握手。
 
-常用命令模板见 `references/commands.md`。
+需要构造命令时读取 [命令模板](references/commands.md)，再按目标引擎验证参数。
 
 ## 验证
+
+以用户要求的阶段和产物为完成边界；仅修 UBT 不要求整轮打包，Package/Patch 交付才验证对应运行/升级。定位到本次失败后继续修复并重跑受影响阶段，避免重复已通过且未受影响的长时 Cook。
 
 - 构建命令可从干净 shell 重现；
 - Cook/Stage/Package 每阶段日志可定位；

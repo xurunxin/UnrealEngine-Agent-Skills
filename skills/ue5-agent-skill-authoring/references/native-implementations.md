@@ -26,9 +26,11 @@ Import the skill module from the plugin's Python package initialization so regis
 Use when the knowledge belongs only to one project and should be editable as Content Browser data. Through `AgentSkillToolset`:
 
 1. `ListSkills` and inspect overlaps;
-2. with explicit user approval, call `CreateSkill` using FolderPath, PascalCase AssetName, Description, and Details.Instructions;
+2. with explicit user approval covering the target and content (including approval already given), call `CreateSkill` using FolderPath, PascalCase AssetName, Description, and Details.Instructions;
 3. for changes, `GetSkills`, show a diff, then call `UpdateSkill` with the full generated class path;
-4. `GetSkills` again and save/review the asset.
+4. check each result, save the explicit asset, then `GetSkills` again and review source-control changes.
+
+Establish a recovery point before mutation. Execute Editor calls serially; on ambiguous write results, inspect state before deciding whether to continue. Never blindly retry an asset write.
 
 ## Durable content
 

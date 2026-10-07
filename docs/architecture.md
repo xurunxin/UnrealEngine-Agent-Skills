@@ -8,7 +8,7 @@ The project separates **knowledge**, **execution**, and **evidence** so an Agent
 
 `skills/<name>/SKILL.md` contains routing and decision logic. Detailed API maps, command tables, and checklists live in `references/`. This limits prompt growth and reduces accidental application of unrelated guidance.
 
-`ue5-router` is the only universal entry. It selects one primary Skill and at most a few companions. For example:
+Known tasks load their domain Skill directly. `ue5-router` resolves ambiguous or cross-domain requests; companion Skills are loaded only for real dependencies. For example:
 
 - new gameplay component: `ue5-cpp-gameplay` + `ue5-uobject-reflection`;
 - editor plugin: `ue5-modules-plugins` + `ue5-editor-automation`;

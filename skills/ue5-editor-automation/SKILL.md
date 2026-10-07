@@ -1,6 +1,6 @@
 ---
 name: ue5-editor-automation
-description: "Automate UE5.4+ Editor workflows with commandlets, Editor Utility tools, Python, subsystems, asset registry, transactions, and unattended-safe scripts without directly editing binary assets."
+description: "Automate UE5.4+ asset and Editor tasks with Python, utilities, or commandlets, including recoverable batch changes."
 ---
 
 # UE5 Editor Automation
@@ -27,7 +27,7 @@ description: "Automate UE5.4+ Editor workflows with commandlets, Editor Utility 
 
 ### 2. 先做只读清单
 
-通过 Asset Registry/Editor Subsystem 列出候选资产，输出路径、类、包、引用和预期动作。使用完整对象/包路径，避免显示名歧义。批量写之前让用户审阅清单。
+通过 Asset Registry/Editor Subsystem 列出候选资产，输出路径、类、包、引用和预期动作。使用完整对象/包路径，避免显示名歧义。批量写之前展示清单并建立恢复点；确认本次资产范围和动作已获授权，超出范围时再确认。Editor 状态相关调用串行执行，逐次检查返回结果。
 
 ### 3. 事务和脏包
 
@@ -46,6 +46,8 @@ description: "Automate UE5.4+ Editor workflows with commandlets, Editor Utility 
 脚本返回非零失败，日志包含汇总和具体资产。关闭弹窗、Source Control 交互和本机 UI 依赖。对可能触发编译/Shader/加载的步骤设置合理等待和超时。
 
 ## 验证
+
+按选择的载体验证：只读/dry-run 任务以清单为交付；实际写入检查资产和恢复行为，Commandlet 另查无人值守退出码。确定且可恢复的本次失败应修复并重验；写入结果不明时先重读状态。
 
 - dry-run 清单与实际修改集合一致；
 - 失败不会留下部分命名/引用损坏；

@@ -1,6 +1,6 @@
 ---
 name: ue5-project-architecture
-description: "Design a maintainable UE5.4+ project or plugin architecture, choosing gameplay classes, subsystems, modules, data assets, interfaces, ownership, dependencies, and Blueprint boundaries."
+description: "Design UE5.4+ systems and module boundaries around ownership, lifecycle, and Runtime/Editor separation."
 ---
 
 # UE5 Project Architecture
@@ -54,4 +54,4 @@ Runtime 代码不得依赖 UnrealEd、AssetTools 或 Editor 子系统。Editor �
 - 模块依赖无环且 Runtime 不依赖 Editor；
 - C++/Blueprint/Data 边界可被一句话说明；
 - Dedicated Server、PIE 和地图切换行为已考虑；
-- 关键模块可独立编译并有聚焦测试。
+- 方案任务交付生命周期、依赖和验证方案；包含实现时再完成关键模块编译与聚焦测试。

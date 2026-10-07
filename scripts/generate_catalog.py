@@ -44,7 +44,7 @@ def render(root: Path) -> str:
         "",
         f"Verified engine: `UE {manifest['verified_engine']['version']}` at `{manifest['verified_engine']['commit'][:12]}`",
         "",
-        "Start with [`ue5-router`](skills/ue5-router/SKILL.md). Load only the domain skills required by the task.",
+        "Load the matching domain skill directly; use [`ue5-router`](skills/ue5-router/SKILL.md) for ambiguous or cross-domain tasks.",
         "",
     ]
 

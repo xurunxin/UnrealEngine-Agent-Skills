@@ -1,6 +1,6 @@
 ---
 name: ue5-uobject-reflection
-description: "Author or diagnose UE5.4+ UObject reflection code, UCLASS/USTRUCT/UENUM/UFUNCTION/UPROPERTY metadata, UHT failures, generated headers, GC references, serialization, and object pointers."
+description: "Author UE5.4+ reflected types or diagnose UHT, generated headers, GC references, and serialization failures."
 ---
 
 # UE5 UObject and Reflection
@@ -46,7 +46,7 @@ UObject 所拥有的 UObject 引用应通过 UPROPERTY/TObjectPtr、FGCObject �
 
 新增/删除 UCLASS、UPROPERTY、UFUNCTION 或改变反射签名时，不依赖 Live Coding 证明最终正确。关闭 Editor 后执行完整编译，必要时清理对应模块生成产物；重新打开并检查 Blueprint 绑定和默认值。
 
-详细检查表见 `references/reflection-checklist.md`。
+涉及反射签名、GC 或序列化变化时读取 [反射检查表](references/reflection-checklist.md)。
 
 ## 验证
 

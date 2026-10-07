@@ -243,6 +243,72 @@
         "ue5-blueprint-authoring",
         "ue5-router"
       ]
+    },
+    {
+      "id": "astra-direct-build-rules",
+      "prompt": "UE5.7 插件的 Build.cs 缺少一个 PrivateDependency，模块归属已经确认。补上依赖并验证最小目标。",
+      "engine": "5.7.0",
+      "expected_primary": "ue5-modules-plugins",
+      "companions": [],
+      "mode": "file",
+      "must_not_activate": [
+        "ue5-router",
+        "ue5-project-bootstrap",
+        "ue5-mcp-operator",
+        "ue5-build-cook-package"
+      ],
+      "expected_behavior": "Fix the dependency, build the smallest affected target, and inspect the diff; do not bootstrap, start Editor MCP, or run a full package."
+    },
+    {
+      "id": "astra-mcp-read-only-connected",
+      "prompt": "已经连接到 UE5.8.1 项目的原生 MCP。只列出当前 Actor，不保存资产、不停止正在进行的 PIE。若工具不支持当前状态，说明限制。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-mcp-operator",
+      "companions": [],
+      "mode": "mcp",
+      "must_not_activate": [
+        "ue5-project-bootstrap"
+      ],
+      "expected_behavior": "Discover the relevant schema and query serially if allowed during PIE; no mutation or setup restart. Respect a tool-specific PIE precondition without changing state outside the request."
+    },
+    {
+      "id": "astra-blueprint-repair-authorized",
+      "prompt": "已授权给 BP_Door 添加 bLocked 和对应分支节点，恢复点已建立。编译报告刚接入的 Pin 类型错误。修复本次连接并编译、保存、重读验证。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-blueprint-authoring",
+      "companions": [
+        "ue5-mcp-operator"
+      ],
+      "mode": "mcp",
+      "must_not_activate": [
+        "ue5-project-bootstrap"
+      ],
+      "expected_behavior": "Inspect the pin types, repair within the existing authorization, recompile, save the named asset, and verify the graph; do not ask for the same approval or stop at the first compile error."
+    },
+    {
+      "id": "astra-mcp-ambiguous-write",
+      "prompt": "UE5.8.1 的资产重命名调用超时，无法确定是否已完成。继续处理本次任务。",
+      "engine": "5.8.1",
+      "expected_primary": "ue5-mcp-operator",
+      "companions": [
+        "ue5-editor-automation"
+      ],
+      "mode": "mcp",
+      "must_not_activate": [],
+      "expected_behavior": "Pause writes, inspect old/new paths, references and logs, then recover only from a known state within authorization. Never resend the rename blindly."
+    },
+    {
+      "id": "astra-portable-skill-doc-only",
+      "prompt": "只优化 portable ue5-cpp-gameplay 的触发描述，同步本仓库目录和 manifest，不操作 Editor 资产。",
+      "engine": "5.4.0",
+      "expected_primary": "ue5-agent-skill-authoring",
+      "companions": [],
+      "mode": "file",
+      "must_not_activate": [
+        "ue5-mcp-operator",
+        "ue5-project-bootstrap"
+      ],
+      "expected_behavior": "Edit portable instructions and metadata and run repository checks; do not connect to Editor or create a native UAgentSkill asset."
     }
   ]
 }

@@ -1,64 +1,36 @@
 ---
 name: ue5-agent-skill-authoring
-description: "Create, review, export, or update UE5.8 project-native UAgentSkill assets and portable SKILL.md instructions, with explicit user permission, concise routing metadata, and project-specific precedence."
+description: "Create or update portable Unreal SKILL.md instructions or UE5.8 project-native UAgentSkill assets."
 ---
 
-# UE5.8 Agent Skill Authoring
+# UE Agent Skill Authoring
 
 ## 适用范围
 
-用于编写本仓库的 portable `SKILL.md`，或在 UE5.8 项目中创建/更新 `UAgentSkill` 资产。仅使用技能完成任务时不触发。
+编写本仓库 portable `SKILL.md`，或创建/更新 UE5.8 项目原生 `UAgentSkill`。仅调用既有技能时不触发。
 
 ## 版本门槛
 
-- portable `SKILL.md`：可用于支持 Agent Skills 的客户端，UE 核心内容以 5.4+ 为基线；
-- `UAgentSkill`/`AgentSkillToolset`：要求 UE5.8+ ToolsetRegistry，当前核验 UE5.8.1。
+portable Skills 的 UE 内容以 5.4+ 为基线；原生 `UAgentSkill`/`AgentSkillToolset` 要求 UE5.8+ ToolsetRegistry，当前核验 UE5.8.1。
 
 ## 工作流
 
-### 1. 判断 Skill 是否必要
+先检查 `MANIFEST.json` 或已连接 Editor 的 `AgentSkillToolset.ListSkills`。复用/扩展已有 Skill，避免重复触发；项目 Skill 只保存项目特有、无法从代码廉价发现的约束。
 
-只有当知识具有明确触发、反复出现、无法从代码直接发现、并且需要一套稳定决策/验证流程时创建 Skill。一次性说明、API 列表或项目 README 不自动升级成 Skill。
+- **portable 文本**：稳定 kebab-case name、简短且可区分的 description；保留适用范围、版本门槛、工作流和验证。核心决策留在正文，分支专用资料放 references 并写明读取条件。相邻技能容易误触时补排除条件，无需堆砌关键词。目标和完成证据优先于固定步骤数量。
+- **插件内 Python Skill**：随代码版本控制，使用 `@agent_skill`、docstring description 与 `instructions`；修改后重新加载插件 Python package，并通过 List/Get 验证。
+- **项目 UAsset Skill**：适合 Content Browser 维护的项目知识。`CreateSkill`/`UpdateSkill` 是写资产操作，需用户明确指示；已有指示覆盖本次目标时无需重复询问。调用前确定 FolderPath/AssetName，提供内容摘要/差异并建立恢复点；更新先 Get 保留旧内容。依次调用、检查结果、保存指定资产、重读验证，结果不明确时不重试写入。
 
-### 2. 先查已有技能
+选择原生实现时读取 [实现和注册参考](references/native-implementations.md)。工具参数从运行时 schema 获取，不猜测固定 Tool 名/签名；不将 Remote Execution 默认暴露到不可信网络。项目偏好不覆盖引擎版本、权限或源码许可边界。
 
-portable 仓库检查 `MANIFEST.json`；Editor 内调用 `AgentSkillToolset.ListSkills`。若现有 Skill 能通过一个 reference 扩展，不创建重叠 Skill。
-
-### 3. 写路由元数据
-
-`name` 稳定、kebab-case；`description` 同时写“何时用”和关键排除条件，避免“帮助开发 Unreal”这类会匹配所有任务的描述。正文采用渐进披露：决策在 SKILL，长资料在 references。
-
-### 4. 写可执行流程
-
-必须包含适用范围、版本门槛、工作流、验证；对 Editor/MCP 变更写恢复点和权限。项目 Skill 只记录该项目特有的目录、命名、工具、资产约束和 canonical workflow，不重复通用 UE 知识。不要把易变的具体 Tool 名列表写死；要求 Agent 在运行时发现 schema。
-
-### 5. 选择 UE5.8 原生实现
-
-- **Python `UAgentSkill` 子类**：属于代码插件、需要随插件版本控制和加载时自动注册；使用 `@agent_skill` 装饰器，docstring 作为 Description，`instructions` 作为正文。
-- **UAsset Skill**：只属于某个项目、希望在 Content Browser 中维护且无需代码。
-
-Python Skill 修改后必须重新加载插件 Python package 再验证；不要把 Remote Execution 默认暴露到不可信网络。两种实现细节见 `references/native-implementations.md`。
-
-### 6. 创建项目原生 UAsset Skill
-
-`CreateSkill`/`UpdateSkill` 是写资产操作，只在用户明确指示后调用。先确认 FolderPath/AssetName，保存前展示 description 和 instructions 摘要。更新前 GetSkills 并保留原内容以便比较。
-
-可先运行：
+只需导出可审阅 payload 时执行：
 
 ```bash
 python scripts/export_agent_skills.py --selected ue5-blueprint-authoring --output build/agent-skills.json
 ```
 
-该脚本只生成 payload，不直接修改 Editor。
-
-### 7. 验证触发和冲突
-
-用至少三个正例、三个负例测试 description；检查项目 Skill 与通用 Skill 是否冲突。项目特有规则可覆盖通用偏好，但不能覆盖安全、版本或许可边界。
+该脚本不修改 Editor。维护文本不需要连接 Editor 或新建资产。
 
 ## 验证
 
-- frontmatter/manifest 校验通过；
-- Skill 有清晰非触发场景；
-- 只加载 Skill 即可完成核心决策，references 按需读取；
-- Editor 原生创建/更新得到用户明确许可；
-- List/Get 后内容、路径和描述正确，资产保存可审查。
+portable 修改通过 manifest/frontmatter、catalog 和链接检查，并用实际正例和容易混淆的负例检查触发范围；只读取相关 references 即可完成任务。原生变更另需 List/Get 的路径、内容、注册/保存状态与要求一致。结构检查不是模型行为测试；实际未运行的引擎/模型验证分别注明。

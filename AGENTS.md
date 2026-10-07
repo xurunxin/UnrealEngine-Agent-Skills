@@ -24,12 +24,12 @@ Maintain reusable Coding Agent skills for Unreal Engine **5.4 and newer**. The p
 
 ## Change workflow
 
-1. Route through `skills/ue5-router/SKILL.md`.
-2. Inspect project/module/plugin context before proposing code.
-3. State target Engine version and evidence path.
-4. Make the smallest coherent change.
-5. Compile, run focused tests, then broader validation.
-6. Update `sources.lock.json` and compatibility notes when evidence changes.
+- Load the matching domain skill directly; use `skills/ue5-router/SKILL.md` only when the task or execution mode needs routing. Read references for the affected workflow, not the entire catalog.
+- For Engine code/API changes, inspect the exact project/module/version and record evidence paths. Update `sources.lock.json` and compatibility notes only when that evidence changes.
+- For skill/documentation changes, validate routing, links and generated metadata with the checks below. Do not require an Editor build for prose-only changes.
+- For implementation, finish the requested behavior, focused compile/tests and diff review. Fix recoverable failures within the authorized scope; broaden validation only for affected dependencies or unresolved risk.
+- Reuse explicit authorization already given for the specified assets/actions. Establish a recovery point before mutation; if a write result is ambiguous, inspect state before continuing and never blindly retry.
+- Report unavailable Engine/runtime checks as unverified; do not substitute static checks for execution evidence.
 
 ## Repository checks
 

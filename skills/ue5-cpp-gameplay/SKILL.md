@@ -1,6 +1,6 @@
 ---
 name: ue5-cpp-gameplay
-description: "Implement or review UE5.4+ gameplay C++ using Unreal ownership, lifecycle, delegates, components, subsystems, async work, containers, logging, and safe UObject-aware patterns."
+description: "Implement UE5.4+ gameplay C++ with UObject ownership, lifecycle, delegates, and Game Thread constraints."
 ---
 
 # UE5 C++ Gameplay
@@ -48,7 +48,7 @@ description: "Implement or review UE5.4+ gameplay C++ using Unreal ownership, li
 
 先写数据契约和最小行为，再接 Blueprint/网络/资产。一次变更同时更新头文件、实现、模块依赖和测试，避免“先让它编译再补生命周期”的半成品。
 
-更多模式见 `references/gameplay-patterns.md`。
+需要异步/委托或生命周期实现示例时读取 [Gameplay 模式](references/gameplay-patterns.md)。
 
 ## 验证
 

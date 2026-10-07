@@ -8,81 +8,81 @@ Minimum engine: `UE 5.4.0+`
 
 Verified engine: `UE 5.8.1` at `71fe36aac5a8`
 
-Start with [`ue5-router`](skills/ue5-router/SKILL.md). Load only the domain skills required by the task.
+Load the matching domain skill directly; use [`ue5-router`](skills/ue5-router/SKILL.md) for ambiguous or cross-domain tasks.
 
 ## Routing
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-router`](skills/ue5-router/SKILL.md) | `>=5.4.0` | Route Unreal Engine 5.4+ development requests to the smallest relevant skill set; use at the start of any UE project, C++, Blueprint, module, build, testing, migration, or MCP task. |
+| [`ue5-router`](skills/ue5-router/SKILL.md) | `>=5.4.0` | Select UE5.4+ domain skills when a request spans workflows or its task, engine version, or execution mode is unclear. |
 
 ## Project Setup
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-project-bootstrap`](skills/ue5-project-bootstrap/SKILL.md) | `>=5.4.0` | Bootstrap or normalize a UE5.4+ project workspace, including engine detection, project files, AGENTS instructions, source-control hygiene, plugins, and the first compile/test loop. |
+| [`ue5-project-bootstrap`](skills/ue5-project-bootstrap/SKILL.md) | `>=5.4.0` | Set up or take over a UE5.4+ C++ workspace with a working toolchain, project instructions, and first Editor build. |
 
 ## Source Research
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-source-navigation`](skills/ue5-source-navigation/SKILL.md) | `>=5.4.0` | Navigate Unreal Engine 5.4+ source safely and efficiently when locating APIs, modules, ownership, call paths, version changes, or engine examples without copying restricted source. |
+| [`ue5-source-navigation`](skills/ue5-source-navigation/SKILL.md) | `>=5.4.0` | Locate version-correct UE5.4+ APIs, module ownership, and engine call sites for source questions or unresolved symbols. |
 
 ## Architecture
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-project-architecture`](skills/ue5-project-architecture/SKILL.md) | `>=5.4.0` | Design a maintainable UE5.4+ project or plugin architecture, choosing gameplay classes, subsystems, modules, data assets, interfaces, ownership, dependencies, and Blueprint boundaries. |
+| [`ue5-project-architecture`](skills/ue5-project-architecture/SKILL.md) | `>=5.4.0` | Design UE5.4+ systems and module boundaries around ownership, lifecycle, and Runtime/Editor separation. |
 
 ## C++ and Reflection
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-cpp-gameplay`](skills/ue5-cpp-gameplay/SKILL.md) | `>=5.4.0` | Implement or review UE5.4+ gameplay C++ using Unreal ownership, lifecycle, delegates, components, subsystems, async work, containers, logging, and safe UObject-aware patterns. |
-| [`ue5-uobject-reflection`](skills/ue5-uobject-reflection/SKILL.md) | `>=5.4.0` | Author or diagnose UE5.4+ UObject reflection code, UCLASS/USTRUCT/UENUM/UFUNCTION/UPROPERTY metadata, UHT failures, generated headers, GC references, serialization, and object pointers. |
+| [`ue5-cpp-gameplay`](skills/ue5-cpp-gameplay/SKILL.md) | `>=5.4.0` | Implement UE5.4+ gameplay C++ with UObject ownership, lifecycle, delegates, and Game Thread constraints. |
+| [`ue5-uobject-reflection`](skills/ue5-uobject-reflection/SKILL.md) | `>=5.4.0` | Author UE5.4+ reflected types or diagnose UHT, generated headers, GC references, and serialization failures. |
 
 ## Modules and Build Rules
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-modules-plugins`](skills/ue5-modules-plugins/SKILL.md) | `>=5.4.0` | Create or change UE5.4+ modules and plugins, including Build.cs, Target.cs, descriptors, API exports, Public/Private dependencies, load phases, editor/runtime separation, and circular-dependency prevention. |
+| [`ue5-modules-plugins`](skills/ue5-modules-plugins/SKILL.md) | `>=5.4.0` | Configure UE5.4+ modules and plugins or diagnose Build.cs, Target.cs, exports, dependencies, and loading failures. |
 
 ## Blueprint
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-blueprint-authoring`](skills/ue5-blueprint-authoring/SKILL.md) | `>=5.4.0` | Design, inspect, or modify UE5.4+ Blueprints and Blueprint assets through Unreal Editor, MCP, or scripting while preserving graph correctness, compile status, defaults, references, and source-control recoverability. |
-| [`ue5-cpp-blueprint-interop`](skills/ue5-cpp-blueprint-interop/SKILL.md) | `>=5.4.0` | Choose and implement UE5.4+ C++ and Blueprint interoperability, including exposure metadata, events, interfaces, function libraries, data contracts, soft references, and stable designer-facing APIs. |
+| [`ue5-blueprint-authoring`](skills/ue5-blueprint-authoring/SKILL.md) | `>=5.4.0` | Inspect or edit UE5.4+ Blueprint graphs and assets through Editor tools, with compile and reference validation. |
+| [`ue5-cpp-blueprint-interop`](skills/ue5-cpp-blueprint-interop/SKILL.md) | `>=5.4.0` | Design or repair UE5.4+ C++ APIs exposed to Blueprint, including events, interfaces, metadata, and asset compatibility. |
 
 ## Editor Automation
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-editor-automation`](skills/ue5-editor-automation/SKILL.md) | `>=5.4.0` | Automate UE5.4+ Editor workflows with commandlets, Editor Utility tools, Python, subsystems, asset registry, transactions, and unattended-safe scripts without directly editing binary assets. |
+| [`ue5-editor-automation`](skills/ue5-editor-automation/SKILL.md) | `>=5.4.0` | Automate UE5.4+ asset and Editor tasks with Python, utilities, or commandlets, including recoverable batch changes. |
 
 ## Quality and Performance
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-performance-profiling`](skills/ue5-performance-profiling/SKILL.md) | `>=5.4.0` | Investigate and improve UE5.4+ CPU, GPU, memory, loading, shader, asset, and network performance using evidence-first profiling and changes that preserve frame and thread safety. |
-| [`ue5-testing-debugging`](skills/ue5-testing-debugging/SKILL.md) | `>=5.4.0` | Plan, implement, run, and diagnose UE5.4+ tests and failures using Automation specs, functional tests, logs, ensures/checks, crash artifacts, focused reproduction, and CI-friendly commands. |
+| [`ue5-performance-profiling`](skills/ue5-performance-profiling/SKILL.md) | `>=5.4.0` | Measure and fix UE5.4+ performance regressions in frame time, memory, loading, or network behavior. |
+| [`ue5-testing-debugging`](skills/ue5-testing-debugging/SKILL.md) | `>=5.4.0` | Reproduce and diagnose UE5.4+ crashes or test failures, and implement focused Automation or functional tests. |
 
 ## Build and Delivery
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-build-cook-package`](skills/ue5-build-cook-package/SKILL.md) | `>=5.4.0` | Build, cook, stage, package, archive, or patch UE5.4+ projects with UBT, UAT, BuildCookRun, IoStore, configuration control, log triage, and reproducible artifact checks. |
+| [`ue5-build-cook-package`](skills/ue5-build-cook-package/SKILL.md) | `>=5.4.0` | Build, cook, package, or patch UE5.4+ projects and diagnose UBT/UAT stage failures or invalid artifacts. |
 
 ## Compatibility
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-version-migration`](skills/ue5-version-migration/SKILL.md) | `>=5.4.0` | Migrate or audit Unreal projects and plugins toward UE5.4+ while isolating UE4 and UE5.0–5.3 legacy assumptions, validating source-level API changes, build settings, reflection, assets, and behavior. |
+| [`ue5-version-migration`](skills/ue5-version-migration/SKILL.md) | `>=5.4.0` | Migrate projects or plugins to UE5.4+, or verify legacy recipes and cross-minor compatibility. |
 
 ## UE5.8 MCP
 
 | Skill | Engine | Trigger |
 |---|---:|---|
-| [`ue5-agent-skill-authoring`](skills/ue5-agent-skill-authoring/SKILL.md) | `5.8.0–5.8.x` | Create, review, export, or update UE5.8 project-native UAgentSkill assets and portable SKILL.md instructions, with explicit user permission, concise routing metadata, and project-specific precedence. |
-| [`ue5-mcp-operator`](skills/ue5-mcp-operator/SKILL.md) | `5.8.0–5.8.x` | Operate the UE5.8 native Model Context Protocol server and Toolset Registry from a Coding Agent, including setup, discovery, serial execution, Blueprint and asset workflows, recovery, and security. |
-| [`ue5-mcp-tool-authoring`](skills/ue5-mcp-tool-authoring/SKILL.md) | `5.8.0–5.8.x` | Design, implement, register, test, and secure UE5.8 MCP Toolsets or direct protocol tools using ToolsetRegistry, typed AICallable functions, async results, schemas, and explicit privilege boundaries. |
+| [`ue5-agent-skill-authoring`](skills/ue5-agent-skill-authoring/SKILL.md) | `5.8.0–5.8.x` | Create or update portable Unreal SKILL.md instructions or UE5.8 project-native UAgentSkill assets. |
+| [`ue5-mcp-operator`](skills/ue5-mcp-operator/SKILL.md) | `5.8.0–5.8.x` | Connect to or operate a running UE5.8 native MCP Editor through discovered Toolsets; excludes source-only questions. |
+| [`ue5-mcp-tool-authoring`](skills/ue5-mcp-tool-authoring/SKILL.md) | `5.8.0–5.8.x` | Implement or extend UE5.8 MCP Toolsets and their typed schemas; use the operator skill to call existing tools. |
